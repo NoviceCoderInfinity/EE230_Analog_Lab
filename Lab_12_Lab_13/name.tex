@@ -1,0 +1,383 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{LightRubineRed}{RubineRed!70}
+\colorlet{Mycolor1}{green!10!orange}
+\definecolor{Mycolor2}{HTML}{00F9DE}
+%
+\pagecolor{black}
+\color{white}
+
+\title{EE 230: Analog Circuits Lab\\ Lab No. 10 - 11\\ Differential Operational Amplifier}
+% Author[Enter details of author here]
+\author{Anupam Rawat, 22b3982}
+\date{March 28, 2024}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Differential Amplifier with Resistive Load}
+
+\subsection{Aim of the experiment}
+The aim of this experiment is to design and analyze a basic differential amplifier with a resistive load.
+
+\subsection{Design}
+\subsubsection{Required Specifications of the Device:} 
+    \begin{itemize}
+        \item Gain \> 12 dB \hspace{1cm} $\bullet$ ${V_{in,cm(min)}}$ = 3.5V
+        \item 5V $<$ ${V_{out,cm}}$ $<$ 7V 
+    \end{itemize}
+
+\subsubsection{Device Specifications:}
+    \textbf{NMOS:}
+    \begin{itemize}
+        \item $K_n$ $^'$ = $106 \mu A / V^2$ \hspace{1cm} $\bullet$ $\frac{W}{L}$ = 5
+        \item $K_n$ = $0.53 mA / V^2$ \hspace{1cm} $\bullet$ $V_{th,n}$ = 0.45V
+    \end{itemize}
+
+    \!\!\!\!\!\!\!\!\!\!
+    \textbf{PMOS:}
+    \begin{itemize}
+        \item $K_p$ $^'$ = $80 \mu A / V^2$ \hspace{1cm} $\bullet$ $\frac{W}{L}$ = 5
+        \item $K_p$ = $0.16 mA / V^2$ \hspace{1cm} $\bullet$ $V_{th,p}$ = -0.5V
+    \end{itemize}
+
+\subsubsection{Circuit Design:}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics{Experiment_1.eps}
+        \caption{Differential Amplifier with Resistive Load}
+        \label{fig:circuit1}
+    \end{figure}
+    
+\subsubsection{Equations:}
+    \begin{equation}
+        {V_{in,cm(min)}} = V_{GS1} + V_{dsat3}
+    \end{equation}
+    
+    \begin{equation}
+        {V_{in,cm(min)}} = V_{TH1} + \sqrt{\frac{I_{tail}}{K_{n1}}} + \sqrt{2\cdot\frac{I_{tail}}{K_{n3}}}
+    \end{equation}
+    
+    \begin{equation}
+        A_v = gm1 \cdot R_2
+    \end{equation}
+    
+    \begin{equation}
+        A_v = \sqrt{I_{tail}\cdot {K_{n1}}} \cdot R_2
+    \end{equation}
+    
+    \begin{equation}
+        V_{out,cm} = V_{DD} - \frac{{I_{trail}}\cdot{R_2}}{2}
+    \end{equation}
+
+\subsection{Simulation Results:}
+Using , Equation(1) we get, $I_{tail}$ = 0.845 mA. \\ \\
+Using, $V_{in1}$ = $V_{in2}$ = 4.5V and $V_{dd}$ = 10V. \\
+Let $A_v$ = 15dB = $20 \cdot\log_{10} ({    \frac{ V_{o,d} } { V_{in,d} } }) $ \newline \newline
+
+\!\!\!\!\!\!\!\!\!\!We get, $I_{tail}$ = 0.85mA. Let $I_{ref}$ = 1mA. \\
+It can be seen from figure~\ref{fig:circuit1} that current through $M_4$ = 1mA, \\$V_{G4}$ = $V_{D4}$ = 1.94 + $V_{th,n} \approx 2.40V$. \\
+Thus, $R_1$ = $\frac{V_{DD} - V_{D4}}{I_{ref}}$ = $\frac{10 V - 2.4 V}{1 mA}$ = $7.61l\Omega$ \\ \\
+
+\!\!\!\!\!\!\!\!\!\!\! For current mirror circuit, $I_{tail}$ = $I_{ref}$ = 1mA. \\And in common mode, $I_{d1}$ = $I_{d2}$ = 0.5mA. Thus, $V_{S1}$ = $V_{D3}$ = 2.68V\\ \\ 
+
+\!\!\!\!\!\!\!\!\!\!\!\! For $M_4$, $V_{DS3}$ - $V_{(GST)3}$ = 0.93V. Hence $M_4$ is in saturation. \\
+
+\!\!\!\!\!\!\!\!\!\!\!\! From equation(3) and equation(4), we obtain, $R_2$ = 7.72 $k\Omega$ \\ 
+
+\!\!\!\!\!\!\!\!\!\!\!\! From equation(5), $V_{D1}$ = $V_{D2}$ = 6.14V, satisfying, $5V < V_{out} < 7V$. \\
+
+\subsubsection{Values Calculated From this Simulation Section:}
+$R_1$ = 7.61k$\Omega$ and $R_2 = R_3 = 7.72k\Omega$ \hspace{1cm} $V_{out,cm}$ = $V_{d1}$ = $V_{d2}$ = 6.14V. \\ $I_{tail}$ = $I_{ref}$ = 1mA \hspace{1cm} $V_{D3}$ = $V_{S1} / 2$ = 2.68V\\
+$M_1, M_2, M_3, M_4$, all are operating in saturation region.
+
+
+\newpage
+\subsubsection{Simulation Results (Images):}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{LTSpice_Simulation/LTSpice_Simulation_Exp_1.jpg}
+    %\label{fig:enter-label}
+\end{figure} \\
+
+\subsection{Experiment Results}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+                    & Calculated Value  & Simulation Result   & Experimental Result \\ \hline
+        $I_{tail}$  & 1mA               & 1.0031mA            & 0.97mA \\ \hline
+        $I_{ref}$   & 1mA               & 1.0013mA            & 1.01mA \\ \hline
+        $V_{out,cm}$& 6.14V             & 6.13V               & 6.08V \\ \hline
+        $V_{D3}$    & 2.68V             & 2.683V              & 2.21V \\ \hline
+        $I_{d1} = I_{d2}$   & 0.5mA     & ~0.5mA              & 0.51mA\\ \hline
+        $V_{G4} = V_{G3}$   & 2.40V        & 2.38V                & 2.3V\\ \hline
+    \end{tabular}
+    %\caption{Caption}
+    \label{tab:my_label}
+\end{table}
+As it can be seen from the tabulated values, that the (hand) calculated values, values calculated by simulation and the values calculated from experimentation are all very close.\\
+
+Also, $V_{out,AC}$ = 56mV and $V_{in,AC}$ = 10mV; $A_v = \frac{V_{out,AC}}{V_{in,AC}}$ = 5.6
+
+\subsection{Experiment completion status}
+This experiment was completed within the lab itself in its entirety.
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Differential Amplifier with Active Load}
+
+\subsection{Aim of the experiment}
+The aim of this experiment is to design, simulate, and implement a differential amplifier with an active load (Five Transistor OTA). 
+
+\subsection{Design}
+    \subsubsection{Required Specification:}
+        $\bullet$ $V_{out,DC}$ = 6V \hspace{4.5cm} $\bullet$ $V_{dd}$ = 10V.
+    
+    \subsubsection{Circuit Design:}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale = 1]{Experiment_2.eps}
+        \end{figure}
+
+    \subsubsection{Equations:}
+        \begin{equation}
+            gain = - gm1 ( r_{o2} || r_{o4} )
+        \end{equation}
+
+        \begin{equation}
+            V_{out} = V_{g3} \quad V_{g3} = V_{DD} - V_{sg3} \quad V_{sg3} = \sqrt{\frac{I_o}{K_{n3}}} + V_{th3}
+        \end{equation}
+
+        \begin{equation}
+            V_{g3} = V_{DD} - \sqrt{\frac{I_o}{K_{n3}}} - V_{th3}
+        \end{equation}
+
+        \begin{equation}
+            V_{in,cm(min)} = \sqrt{2\cdot\frac{I_o}{K_{n3}}} + \sqrt{\frac{I_o}{K_{n1}}} + V_{th1}
+        \end{equation}
+
+        \begin{equation}
+            V_{in,cm(max)} = V_{out, dc}  + V_{th1}
+        \end{equation}
+
+\subsection{Simulation Results:}
+\subsubsection{Calculated Values:}
+Using the equations, we obtained the following values: \\
+$\bullet$ $I_o$ = 1.96mA \hspace{1.5cm} $\bullet$ $V_{in,cm(min)}$ = 5.09V \hspace{1.5cm} $\bullet$ $V_{in,cm(max)}$ = 6.45V \\
+$\bullet$ Let $V_{in,cm}$ = 6V and also $I_{ref}$ = $I_o$ = 1.96mA \\
+$\bullet$ $V_{(GST)5}$ = 2.719 V \hspace{2.5cm} $\bullet$ $V_{(GS)5}$ = $V_{(DS)5}$ = 3.17V. \\
+$\bullet$ $r_{o2}$ = 170.07$k\Omega$ \hspace{2.5cm} $r_{o4}$ = 170.07$k\Omega$ \\
+$\bullet$ $R_D$ = 3.48 $k\Omega$ \hspace{2.5cm} $R_D$ = -86.67 = 38.76 dB\\
+\newpage
+\textbf{LTSpice Simulation Results:} \\ 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{LTSpice_Simulation/LTSpice_Simulation_Exp_2.jpg}
+    %\label{fig:enter-label}
+\end{figure} \\
+\textbf{Results from DSO (Circuit Simulation):}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Circuit_Simulation/Circuit_Simulation_Exp_2.PNG}
+    %\label{fig:enter-label}
+\end{figure}
+
+\newpage
+\subsection{Experiment Results}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+                    & Calculated Value  & Simulation Result   & Experimental Result \\ \hline
+        $V_{in,cm}$  & 6V               & 6V            & 6.09V \\ \hline
+        $V_{out,cm}$  & 6V               & 6.03V            & 6.26V \\ \hline
+        $I_{ref}$& 1.96mA             & 1.966mA              & 2mA \\ \hline
+        $I_{copy}$    & 1.96mA             & 1.9716mA              & 1.98mA \\ \hline
+        $I_{d1} = I_{d2}$   & 0.98mA     & 0.985mA              & 1mA\\ \hline
+        $V_{ds0}$   & 3.63V        & 3.6351V                & 3.08V\\ \hline
+        $V_{g3}$   & 6V        & 6.030V                & 6.47V \\ \hline
+        $V_{out2}$   & 6V        & 6.030V                & 6.26V\\ \hline
+    \end{tabular}
+    %\caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+Also, $A_v$ = $\frac{V_{out, AC}}{(V_{in1} - V_{in2})_{AC}}$ = $\frac{0.865V}{10mV}$ = 86.5 \\
+DSO Measurements : $\bullet$ $V_{in1}$ = 24m$V_{pp}$ \hspace{1.5cm} $V_{out}$ = 920m$V_{pp}$ \\
+Phase Shift between $V_{in1}$ and $V_{out}$ = 180$^{\circ}$ \\ 
+Differential Gain = $\frac{920}{40}$ = 23\\
+
+\subsection{Experiment completion status}
+This experiment was completed entirely in the lab.
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Some Application design around Five Transistor OTA}
+\section*{3.a Unity Gain Amplifier:}
+
+\subsection*{3.a.1 Aim of the experiment}
+The experiment aims to build and analyze a unity gain buffer circuit using the Five Transistor OTA. 
+
+\subsection*{3.a.2 Design:}
+
+\subsubsection*{3.a.2.A Circuit Input Conditions:}
+$\bullet$ $V_{in1}$ = 500m$V_{pp}$ with 1kHZ. \hspace{1cm} $\bullet$ $V_{in,cm}$ = +6V.
+
+\subsubsection*{3.a.2.B Circuit Design:}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale = 0.9]{Experiment_3_a.eps}
+\end{figure}
+
+\newpage
+
+\subsection*{3.a.3 Simulation Results:}
+\textbf{LTSpice Simulation Results:} \\ 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{LTSpice_Simulation/LTSpice_Simulation_Exp_3_a.jpg}
+\end{figure} \\
+\textbf{Results from DSO (Circuit Simulation):}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale = 0.5]{Circuit_Simulation/Circuit_Simulation_Exp_3_a.PNG}
+    %\label{fig:enter-label}
+\end{figure}
+
+\subsection*{3.a.4 Experimental Results:}
+We conclude that, $V_{out}$ and $V_{in1}$ are completely same even in terms of amplification and phase shift. 
+
+\subsection*{3.a.5 Conclusion and Inferences:}
+Since, we obtain the $V_{out}$ and $V_{in1}$ to be completely in sync in all terms, we can conclude that this is a unity gain amplifier. 
+
+\subsection*{3.a.6 Experiment Completion Status:}
+This experiment was completed within the lab itself in its entirety.
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{3.b Inverting Amplifier:}
+\subsection*{3.b.1 Aim of the experiment}
+The experiment aims to design and analyze inverting amplifier using the Five Transistor OTA.\\ 
+
+\subsection*{3.b.2 Design:}
+
+\subsubsection*{3.b.2.A Circuit Input Conditions:}
+$\bullet$ $V_{bias}$ = $V_{in,cm}$ = 6V. \\ 
+$\bullet$ $R_2 = 10M\Omega, R_1 = 1M\Omega$ \hspace{1cm} $\bullet$ $A_v$ = $- \frac{R_2}{R_1}$ = -10
+
+\subsubsection*{3.b.2.B Circuit Design:}
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Experiment_3_b.eps}
+\end{figure}
+
+\subsection*{3.b.3 Simulation Results:}
+\textbf{LTSpice Simulation Results:} \\ 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{LTSpice_Simulation/LTSpice_Simulation_Exp_3_b.jpg}
+\end{figure} \\
+\textbf{Results from DSO (Circuit Simulation):}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale = 0.5]{Circuit_Simulation/Circuit_Simulation_Exp_3_b.PNG}
+    %\label{fig:enter-label}
+\end{figure}
+
+\subsection*{3.b.4 Experimental Results:}
+\underline{\textbf{Need for high resistance ($\approx$ in $M\Omega$):}} \\
+$\bullet$ Having a high input impedance calls for a minimized loading effect and  \\
+$\bullet$ Having less current flowing reduces the risk of current sinking. \\ \\ 
+
+\!\!\!\!\!\!\!\!\!\!\!\underline{\textbf{Tabulate theoretical and measured value of amplifier gain and phase shift:}} \\
+$\bullet$ $V_d$ = 25m$V_{pp}$, 1kHz  \\
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+                            & Theoretical value  & Simulation Result   & Measured Result    \\\hline
+        Gain ($\frac{V_{out}}{V_d}$)    & -10               & -8.883   & -7.2 ( = 360mV/50mV)\\\hline
+        Phase Shift                     & 180$^{\circ}$   & 180$^{\circ}$    & 180$^{\circ}$\\\hline
+    \end{tabular}
+    %\caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+
+\subsection*{3.b.5 Conclusion and Inferences:}
+The $V_{out}$ is 10 times in magnitude as compared to the $V_d$ and is also phase shifted by 180$^{\circ}$, thus we can conclude that this a inverting amplifier with a gain of 10(in theory).
+
+\subsection*{3.b.6 Experiment Completion Status:}
+This experiment was completed within the lab itself in its entirety.
+
+
+\newpage
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{3.c Differentiator Circuit (BONUS):}
+\subsection*{3.c.1 Aim of the experiment}
+The experiment aims to design a differentiator circuit using the Five Transistor OTA
+
+\subsection*{3.c.2 Design:}
+
+\subsubsection*{3.c.2.A Circuit Input Conditions:}
+$\bullet$ Let R = $1M\Omega$ \hspace{4.5cm} $\bullet$ Let C = 100pF \\ 
+$\bullet$ $R_2 = 10M\Omega, R_1 = 1M\Omega$ \hspace{2.74cm} $\bullet$ $A_v$ = $- \frac{R_2}{R_1}$ = -10\\
+$\bullet$ $V_{in}$ = 100m$V_{pp}$, 1kHz triangular wave =$>$ Time Period = 1ms
+
+\subsubsection*{3.c.2.B Circuit Design:}
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Experiment_3_c.eps}
+\end{figure}
+
+\subsubsection*{3.c.2.C Equations:}
+\begin{equation}
+    I = C \cdot \dv{v_{in}}{t}
+\end{equation}
+
+\begin{equation}
+    V_{out} = - R\cdot C \cdot \dv{v_{in}}{t}
+\end{equation}
+
+\subsection*{3.c.3 Simulation Results:}
+\textbf{LTSpice Simulation Results:} \\ 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{LTSpice_Simulation/LTSpice_Simulation_Exp_3_c.jpg}
+\end{figure}
+
+\textbf{Results from DSO (Circuit Simulation):}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale = 0.42]{Circuit_Simulation/Circuit_Simulation_Exp_3_c.PNG}
+    %\label{fig:enter-label}
+\end{figure}
+
+\subsection*{3.c.4 Experimental Results:}
+As per the DSO output, it can be seen that for the input being a triangular wave, we obtain a square wave with same frequency as per the triangular wave.
+
+
+\subsection*{3.c.5 Conclusion and Inferences:}
+The input is a triangular wave and the output is a square wave. The differentiation of a triangular wave leads to square wave, hence it can be concluded that this is a differentiator circuit. 
+
+\subsection*{3.c.6 Experiment Completion Status:}
+This experiment was completed within the lab itself in its entirety.
+
+
+\end{document}

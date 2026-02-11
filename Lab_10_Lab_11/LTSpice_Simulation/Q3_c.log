@@ -1,0 +1,22 @@
+Circuit: * C:\Users\anupa\Desktop\IIT LECTURES\Sem-4\EE 230 Analog Lab\Lab_10_Lab_11\LTSpice_Simulation\Q3_c.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Wed Apr  3 23:03:27 2024
+Total elapsed time: 27.560 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2000261
+traniter = 2000254
+tranpoints = 1000128
+accept = 1000106
+rejected = 22
+matrix size = 11
+fillins = 0
+solver = Normal
+Avg thread counts: 1.0/1.0/1.0/1.0
+Matrix Compiler1:      35 opcodes  0.2/[0.1]/0.1
+Matrix Compiler2: 883 bytes object code size  0.1/0.1/[0.1]
+
